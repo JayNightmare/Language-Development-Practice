@@ -1,0 +1,26 @@
+// Create a file collection from the current directory
+fc = FileCollection(".")
+
+// Get top 10 biggest files
+sel = Selector(top(10, Biggest))
+topBiggest = fc.apply(sel)
+message("Top 10 biggest files:")
+topBiggest.list()
+
+// Get top 20 oldest files
+sel = Selector(top(20, Oldest))
+topOldest = fc.apply(sel)
+message("Top 20 oldest files:")
+topOldest.list()
+
+// Get top 5 smallest files
+sel = Selector(top(5, Smallest))
+topSmallest = fc.apply(sel)
+message("Top 5 smallest files:")
+topSmallest.list()
+
+// Get top 15 newest files
+sel = Selector(top(15, Newest))
+topNewest = fc.apply(sel)
+message("Top 15 newest files:")
+topNewest.list()
