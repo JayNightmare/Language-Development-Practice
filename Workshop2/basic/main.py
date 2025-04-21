@@ -12,10 +12,13 @@ def main(argv):
     else:
         inpname = argv[1]
         inpstream = FileStream(inpname)
+    
     lexer = basicLexer(inpstream)
     tokstream = CommonTokenStream(lexer)
     parser = basicParser(tokstream)
+    
     tree = parser.basic()
+    
     print(TreesUser.toStringTree(tree, None, parser))
     print(TreesUser.PrettyPrint(tree, None, parser))
 
