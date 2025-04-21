@@ -1,16 +1,7 @@
 import sys
 from antlr4 import *
-
-"""
-Six replacements need to be made.
-    Replace "Week3" with your grammar name.
-7th change on line 27: 
-    tree = parser.prog() --> change "prog" to name of your top rule.
-"""
-
 from Week3Lexer import Week3Lexer # Note the Week3 before Lexer x2
 from Week3Parser import Week3Parser # Note the Week3 before Parser x2
-
 from antlr4.tree.Trees import Trees
 
 def main(argv):

@@ -1,0 +1,10 @@
+message "Hello world!"
+wombats = FileCollection("wombats")
+wombats.print()
+hairies = Selector(name("hairy")) 
+wombats.apply(hairies)
+the following not yet implemented
+wombats.apply(Selector(name("")))
+wombats.print()
+marsupials = FileCollection("marsupials")
+marsupials.print()
