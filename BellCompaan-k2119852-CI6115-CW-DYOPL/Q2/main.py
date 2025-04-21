@@ -11,25 +11,57 @@ class FspowVisitor:
         self.variables = {}
 
     def visit(self, tree, parser):
-        node_text = TreesUser.getNodeText(tree, parser.ruleNames)
-        
-        if node_text == "prog":
+        if tree is None:
+            return None
+
+        # Get the rule name for this node
+        if tree.getChildCount() == 0:  # Terminal node
+            return tree.getText()
+
+        rule = parser.ruleNames[tree.getRuleIndex()]
+
+        if rule == 'prog':
+            # Visit all statements
             for i in range(tree.getChildCount()):
-                self.visit(tree.getChild(i), parser)
-                
-        elif node_text == "assignment":
+                if tree.getChild(i).getText() != '<EOF>':
+                    self.visit(tree.getChild(i), parser)
+
+        elif rule == 'assignment':
             var_name = tree.getChild(0).getText()
-            self.visit(tree.getChild(2), parser)  # visit the expression
-            
-        elif node_text == "fcCreation":
-            root_path = tree.getChild(2).getChild(0).getText()  # get STRING from rootSpecifier
+            value = self.visit(tree.getChild(2), parser)
+            self.variables[var_name] = value
+            return value
+
+        elif rule == 'fcCreation':
+            # Get the root path from the rootSpecifier
+            root_path = self.visit(tree.getChild(2), parser)
             return FileCollection(root_path)
+
+        elif rule == 'selCreation':
+            # Get the filter from the selfilter
+            return self.visit(tree.getChild(2), parser)
+
+        elif rule == 'selfilter':
+            # Determine which type of filter this is
+            first_child = tree.getChild(0).getText()
             
-        elif node_text == "selCreation":
-            selector = self.visit_selfilter(tree.getChild(2), parser)  # visit the selfilter
-            return selector
-            
-        elif node_text == "fcApplySelector":
+            if first_child == 'name':
+                return Selector.name(tree.getChild(2).getText())
+            elif first_child == 'size':
+                return Selector.size(tree.getChild(2).getText())
+            elif first_child == 'date':
+                return Selector.date(tree.getChild(2).getText())
+            elif first_child == 'not':
+                inner = self.visit(tree.getChild(2), parser)
+                return Selector.not_(inner)
+            elif first_child == '(':
+                return self.visit(tree.getChild(1), parser)
+            else:  # Must be an intersect operation
+                left = self.visit(tree.getChild(0), parser)
+                right = self.visit(tree.getChild(2), parser)
+                return left.intersect(right)
+
+        elif rule == 'fcApplySelector':
             fc_name = tree.getChild(0).getText()
             sel_name = tree.getChild(3).getText()
             if fc_name in self.variables and sel_name in self.variables:
@@ -37,46 +69,24 @@ class FspowVisitor:
                 selector = self.variables[sel_name]
                 result = fc.apply(selector)
                 result.list()
-                
-        elif node_text == "fcList":
+
+        elif rule == 'fcList':
             fc_name = tree.getChild(0).getText()
             if fc_name in self.variables:
                 self.variables[fc_name].list()
-                
-        elif node_text == "message":
+
+        elif rule == 'message':
             message = tree.getChild(2).getText().strip('"')
             print(message)
-            
-        elif node_text == "expression":
-            result = self.visit(tree.getChild(0), parser)
-            if tree.getParent().getChild(0) is not None:
-                var_name = tree.getParent().getChild(0).getText()
-                self.variables[var_name] = result
-            return result
 
-    def visit_selfilter(self, tree, parser):
-        node_text = TreesUser.getNodeText(tree, parser.ruleNames)
-        
-        if node_text == "FilterName":
-            return Selector.name(tree.getChild(2).getText())
-            
-        elif node_text == "FilterSize":
-            return Selector.size(tree.getChild(2).getText())
-            
-        elif node_text == "FilterDate":
-            return Selector.date(tree.getChild(2).getText())
-            
-        elif node_text == "FilterIntersect":
-            left = self.visit_selfilter(tree.getChild(0), parser)
-            right = self.visit_selfilter(tree.getChild(2), parser)
-            return left.intersect(right)
-            
-        elif node_text == "FilterNot":
-            inner = self.visit_selfilter(tree.getChild(2), parser)
-            return Selector.not_(inner)
-            
-        elif node_text == "FilterParens":
-            return self.visit_selfilter(tree.getChild(1), parser)
+        elif rule == 'expression':
+            return self.visit(tree.getChild(0), parser)
+
+        elif rule == 'rootSpecifier':
+            return tree.getChild(0).getText()
+
+        # For any other rules, just return the text
+        return tree.getText()
 
 def main():
     if len(sys.argv) != 2:
@@ -93,7 +103,9 @@ def main():
     # Print the parse tree for debugging
     print("Parse Tree:")
     print(TreesUser.PrettyPrint(tree, None, parser))
-    
+    print("\nExecuting Script:")
+    print("-----------------")
+
     # Visit the tree
     visitor = FspowVisitor()
     visitor.visit(tree, parser)

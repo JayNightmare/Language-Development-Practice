@@ -1,29 +1,44 @@
-// First create a test directory with some files
-message("Creating test files...")
-
 // Create a file collection for the test directory
 allFiles = FileCollection("test_files")
 
-// Create selectors for different conditions
+// Test basic filters
+message("Testing basic filters:")
+
+message("\nMP4 files:")
 mp4Files = Selector(name("*.mp4"))
-largeFiles = Selector(size("> 300M"))
-oldFiles = Selector(date(">1year"))
-
-// Complex filter: MP4 files that are NOT (large AND old)
-complexSelector = Selector(name("*.mp4") intersect (not (size("> 300M") intersect date(">1year"))))
-
-// List all files first
-message("All files in collection:")
-allFiles.list()
-
-message("MP4 files:")
 allFiles.apply(mp4Files)
 
-message("Large files (>300MB):")
+message("\nLarge files (>300MB):")
+largeFiles = Selector(size("> 300M"))
 allFiles.apply(largeFiles)
 
-message("Old files (>1 year):")
+message("\nOld files (>1 year):")
+oldFiles = Selector(date(">1year"))
 allFiles.apply(oldFiles)
 
-message("Complex filter - MP4 files NOT (larger than 300MB AND older than 1 year):")
-allFiles.apply(complexSelector)
+// Test complex filter combinations
+message("\nTesting complex filter combinations:")
+
+// Example from the question:
+// MP4 files that are NOT (larger than 300MB AND older than 1 year)
+message("\nMP4 files that are NOT (larger than 300MB AND older than 1 year):")
+complexFiles = Selector(name("*.mp4") intersect (not(size("> 300M") intersect date(">1year"))))
+allFiles.apply(complexFiles)
+
+// Additional complex combinations
+message("\nLarge MP4 files:")
+largeMp4 = Selector(name("*.mp4") intersect size("> 300M"))
+allFiles.apply(largeMp4)
+
+message("\nRecent large files:")
+recentLarge = Selector(size("> 300M") intersect not(date(">1year")))
+allFiles.apply(recentLarge)
+
+message("\nNon-MP4 large files:")
+nonMp4Large = Selector(size("> 300M") intersect not(name("*.mp4")))
+allFiles.apply(nonMp4Large)
+
+// Test nested parentheses
+message("\nComplex nested filter:")
+nestedFilter = Selector((name("*.mp4") intersect size("> 300M")) intersect not(date(">1year")))
+allFiles.apply(nestedFilter)
