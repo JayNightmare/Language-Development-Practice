@@ -1,0 +1,29 @@
+// First create a test directory with some files
+message("Creating test files...")
+
+// Create a file collection for the test directory
+allFiles = FileCollection("test_files")
+
+// Create selectors for different conditions
+mp4Files = Selector(name("*.mp4"))
+largeFiles = Selector(size("> 300M"))
+oldFiles = Selector(date(">1year"))
+
+// Complex filter: MP4 files that are NOT (large AND old)
+complexSelector = Selector(name("*.mp4") intersect (not (size("> 300M") intersect date(">1year"))))
+
+// List all files first
+message("All files in collection:")
+allFiles.list()
+
+message("MP4 files:")
+allFiles.apply(mp4Files)
+
+message("Large files (>300MB):")
+allFiles.apply(largeFiles)
+
+message("Old files (>1 year):")
+allFiles.apply(oldFiles)
+
+message("Complex filter - MP4 files NOT (larger than 300MB AND older than 1 year):")
+allFiles.apply(complexSelector)
