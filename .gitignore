@@ -1,5 +1,2 @@
-*.tokens
-*.interp
-*.g4
-*.java
-*.class
+__pycache__
+.antlr
