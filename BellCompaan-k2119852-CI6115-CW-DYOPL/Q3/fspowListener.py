@@ -17,39 +17,12 @@ class fspowListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by fspowParser#StatAssignment.
-    def enterStatAssignment(self, ctx:fspowParser.StatAssignmentContext):
+    # Enter a parse tree produced by fspowParser#stat.
+    def enterStat(self, ctx:fspowParser.StatContext):
         pass
 
-    # Exit a parse tree produced by fspowParser#StatAssignment.
-    def exitStatAssignment(self, ctx:fspowParser.StatAssignmentContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#StatFcApplySelector.
-    def enterStatFcApplySelector(self, ctx:fspowParser.StatFcApplySelectorContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#StatFcApplySelector.
-    def exitStatFcApplySelector(self, ctx:fspowParser.StatFcApplySelectorContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#StatFcList.
-    def enterStatFcList(self, ctx:fspowParser.StatFcListContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#StatFcList.
-    def exitStatFcList(self, ctx:fspowParser.StatFcListContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#StatMessage.
-    def enterStatMessage(self, ctx:fspowParser.StatMessageContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#StatMessage.
-    def exitStatMessage(self, ctx:fspowParser.StatMessageContext):
+    # Exit a parse tree produced by fspowParser#stat.
+    def exitStat(self, ctx:fspowParser.StatContext):
         pass
 
 
@@ -62,147 +35,48 @@ class fspowListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by fspowParser#ExprFcCreation.
-    def enterExprFcCreation(self, ctx:fspowParser.ExprFcCreationContext):
+    # Enter a parse tree produced by fspowParser#expression.
+    def enterExpression(self, ctx:fspowParser.ExpressionContext):
         pass
 
-    # Exit a parse tree produced by fspowParser#ExprFcCreation.
-    def exitExprFcCreation(self, ctx:fspowParser.ExprFcCreationContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#ExprSelCreation.
-    def enterExprSelCreation(self, ctx:fspowParser.ExprSelCreationContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#ExprSelCreation.
-    def exitExprSelCreation(self, ctx:fspowParser.ExprSelCreationContext):
+    # Exit a parse tree produced by fspowParser#expression.
+    def exitExpression(self, ctx:fspowParser.ExpressionContext):
         pass
 
 
-    # Enter a parse tree produced by fspowParser#ExprID.
-    def enterExprID(self, ctx:fspowParser.ExprIDContext):
+    # Enter a parse tree produced by fspowParser#fcCreation.
+    def enterFcCreation(self, ctx:fspowParser.FcCreationContext):
         pass
 
-    # Exit a parse tree produced by fspowParser#ExprID.
-    def exitExprID(self, ctx:fspowParser.ExprIDContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#FcCreationName.
-    def enterFcCreationName(self, ctx:fspowParser.FcCreationNameContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#FcCreationName.
-    def exitFcCreationName(self, ctx:fspowParser.FcCreationNameContext):
+    # Exit a parse tree produced by fspowParser#fcCreation.
+    def exitFcCreation(self, ctx:fspowParser.FcCreationContext):
         pass
 
 
-    # Enter a parse tree produced by fspowParser#SelCreationName.
-    def enterSelCreationName(self, ctx:fspowParser.SelCreationNameContext):
+    # Enter a parse tree produced by fspowParser#selCreation.
+    def enterSelCreation(self, ctx:fspowParser.SelCreationContext):
         pass
 
-    # Exit a parse tree produced by fspowParser#SelCreationName.
-    def exitSelCreationName(self, ctx:fspowParser.SelCreationNameContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#FilterNot.
-    def enterFilterNot(self, ctx:fspowParser.FilterNotContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#FilterNot.
-    def exitFilterNot(self, ctx:fspowParser.FilterNotContext):
+    # Exit a parse tree produced by fspowParser#selCreation.
+    def exitSelCreation(self, ctx:fspowParser.SelCreationContext):
         pass
 
 
-    # Enter a parse tree produced by fspowParser#FilterTop.
-    def enterFilterTop(self, ctx:fspowParser.FilterTopContext):
+    # Enter a parse tree produced by fspowParser#selfilter.
+    def enterSelfilter(self, ctx:fspowParser.SelfilterContext):
         pass
 
-    # Exit a parse tree produced by fspowParser#FilterTop.
-    def exitFilterTop(self, ctx:fspowParser.FilterTopContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#FilterSize.
-    def enterFilterSize(self, ctx:fspowParser.FilterSizeContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#FilterSize.
-    def exitFilterSize(self, ctx:fspowParser.FilterSizeContext):
+    # Exit a parse tree produced by fspowParser#selfilter.
+    def exitSelfilter(self, ctx:fspowParser.SelfilterContext):
         pass
 
 
-    # Enter a parse tree produced by fspowParser#FilterParens.
-    def enterFilterParens(self, ctx:fspowParser.FilterParensContext):
+    # Enter a parse tree produced by fspowParser#topAttr.
+    def enterTopAttr(self, ctx:fspowParser.TopAttrContext):
         pass
 
-    # Exit a parse tree produced by fspowParser#FilterParens.
-    def exitFilterParens(self, ctx:fspowParser.FilterParensContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#FilterName.
-    def enterFilterName(self, ctx:fspowParser.FilterNameContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#FilterName.
-    def exitFilterName(self, ctx:fspowParser.FilterNameContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#FilterDate.
-    def enterFilterDate(self, ctx:fspowParser.FilterDateContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#FilterDate.
-    def exitFilterDate(self, ctx:fspowParser.FilterDateContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#FilterIntersect.
-    def enterFilterIntersect(self, ctx:fspowParser.FilterIntersectContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#FilterIntersect.
-    def exitFilterIntersect(self, ctx:fspowParser.FilterIntersectContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#AttrBiggest.
-    def enterAttrBiggest(self, ctx:fspowParser.AttrBiggestContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#AttrBiggest.
-    def exitAttrBiggest(self, ctx:fspowParser.AttrBiggestContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#AttrSmallest.
-    def enterAttrSmallest(self, ctx:fspowParser.AttrSmallestContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#AttrSmallest.
-    def exitAttrSmallest(self, ctx:fspowParser.AttrSmallestContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#AttrOldest.
-    def enterAttrOldest(self, ctx:fspowParser.AttrOldestContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#AttrOldest.
-    def exitAttrOldest(self, ctx:fspowParser.AttrOldestContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#AttrNewest.
-    def enterAttrNewest(self, ctx:fspowParser.AttrNewestContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#AttrNewest.
-    def exitAttrNewest(self, ctx:fspowParser.AttrNewestContext):
+    # Exit a parse tree produced by fspowParser#topAttr.
+    def exitTopAttr(self, ctx:fspowParser.TopAttrContext):
         pass
 
 

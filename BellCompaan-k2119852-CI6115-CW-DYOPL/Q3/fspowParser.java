@@ -17,15 +17,16 @@ public class fspowParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, ID=14, STRING=15, WS=16, COMMENT=17;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
+		T__17=18, T__18=19, ID=20, STRING=21, COMMA=22, NUMBER=23, WS=24, COMMENT=25;
 	public static final int
 		RULE_prog = 0, RULE_stat = 1, RULE_assignment = 2, RULE_expression = 3, 
-		RULE_fcCreation = 4, RULE_selCreation = 5, RULE_selfilter = 6, RULE_fcApplySelector = 7, 
-		RULE_fcList = 8, RULE_message = 9, RULE_rootSpecifier = 10;
+		RULE_fcCreation = 4, RULE_selCreation = 5, RULE_selfilter = 6, RULE_topAttr = 7, 
+		RULE_fcApplySelector = 8, RULE_fcList = 9, RULE_message = 10, RULE_rootSpecifier = 11;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"prog", "stat", "assignment", "expression", "fcCreation", "selCreation", 
-			"selfilter", "fcApplySelector", "fcList", "message", "rootSpecifier"
+			"selfilter", "topAttr", "fcApplySelector", "fcList", "message", "rootSpecifier"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -33,14 +34,17 @@ public class fspowParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'='", "'FileCollection'", "'('", "')'", "'Selector'", "'name'", 
-			"'size'", "'date'", "'intersect'", "'not'", "'.apply'", "'.list'", "'message'"
+			"'size'", "'date'", "'top'", "'intersect'", "'not'", "'Biggest'", "'Smallest'", 
+			"'Oldest'", "'Newest'", "'.'", "'apply'", "'.list'", "'message'", null, 
+			null, "','"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, "ID", "STRING", "WS", "COMMENT"
+			null, null, null, null, null, null, null, null, "ID", "STRING", "COMMA", 
+			"NUMBER", "WS", "COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -124,21 +128,21 @@ public class fspowParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(23); 
+			setState(25); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(22);
+				setState(24);
 				stat();
 				}
 				}
-				setState(25); 
+				setState(27); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==T__12 || _la==ID );
-			setState(27);
+			} while ( _la==T__18 || _la==ID );
+			setState(29);
 			match(EOF);
 			}
 		}
@@ -155,74 +159,29 @@ public class fspowParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class StatContext extends ParserRuleContext {
+		public AssignmentContext assignment() {
+			return getRuleContext(AssignmentContext.class,0);
+		}
+		public FcApplySelectorContext fcApplySelector() {
+			return getRuleContext(FcApplySelectorContext.class,0);
+		}
+		public FcListContext fcList() {
+			return getRuleContext(FcListContext.class,0);
+		}
+		public MessageContext message() {
+			return getRuleContext(MessageContext.class,0);
+		}
 		public StatContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_stat; }
-	 
-		public StatContext() { }
-		public void copyFrom(StatContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class StatAssignmentContext extends StatContext {
-		public AssignmentContext assignment() {
-			return getRuleContext(AssignmentContext.class,0);
-		}
-		public StatAssignmentContext(StatContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterStatAssignment(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterStat(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitStatAssignment(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class StatMessageContext extends StatContext {
-		public MessageContext message() {
-			return getRuleContext(MessageContext.class,0);
-		}
-		public StatMessageContext(StatContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterStatMessage(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitStatMessage(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class StatFcApplySelectorContext extends StatContext {
-		public FcApplySelectorContext fcApplySelector() {
-			return getRuleContext(FcApplySelectorContext.class,0);
-		}
-		public StatFcApplySelectorContext(StatContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterStatFcApplySelector(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitStatFcApplySelector(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class StatFcListContext extends StatContext {
-		public FcListContext fcList() {
-			return getRuleContext(FcListContext.class,0);
-		}
-		public StatFcListContext(StatContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterStatFcList(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitStatFcList(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitStat(this);
 		}
 	}
 
@@ -230,38 +189,34 @@ public class fspowParser extends Parser {
 		StatContext _localctx = new StatContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_stat);
 		try {
-			setState(33);
+			setState(35);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
-				_localctx = new StatAssignmentContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(29);
+				setState(31);
 				assignment();
 				}
 				break;
 			case 2:
-				_localctx = new StatFcApplySelectorContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(30);
+				setState(32);
 				fcApplySelector();
 				}
 				break;
 			case 3:
-				_localctx = new StatFcListContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(31);
+				setState(33);
 				fcList();
 				}
 				break;
 			case 4:
-				_localctx = new StatMessageContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(32);
+				setState(34);
 				message();
 				}
 				break;
@@ -304,11 +259,11 @@ public class fspowParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(35);
-			match(ID);
-			setState(36);
-			match(T__0);
 			setState(37);
+			match(ID);
+			setState(38);
+			match(T__0);
+			setState(39);
 			expression();
 			}
 		}
@@ -325,57 +280,24 @@ public class fspowParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class ExpressionContext extends ParserRuleContext {
+		public FcCreationContext fcCreation() {
+			return getRuleContext(FcCreationContext.class,0);
+		}
+		public SelCreationContext selCreation() {
+			return getRuleContext(SelCreationContext.class,0);
+		}
+		public TerminalNode ID() { return getToken(fspowParser.ID, 0); }
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expression; }
-	 
-		public ExpressionContext() { }
-		public void copyFrom(ExpressionContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class ExprSelCreationContext extends ExpressionContext {
-		public SelCreationContext selCreation() {
-			return getRuleContext(SelCreationContext.class,0);
-		}
-		public ExprSelCreationContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterExprSelCreation(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitExprSelCreation(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class ExprFcCreationContext extends ExpressionContext {
-		public FcCreationContext fcCreation() {
-			return getRuleContext(FcCreationContext.class,0);
-		}
-		public ExprFcCreationContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterExprFcCreation(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitExprFcCreation(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class ExprIDContext extends ExpressionContext {
-		public TerminalNode ID() { return getToken(fspowParser.ID, 0); }
-		public ExprIDContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterExprID(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitExprID(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitExpression(this);
 		}
 	}
 
@@ -383,30 +305,27 @@ public class fspowParser extends Parser {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_expression);
 		try {
-			setState(42);
+			setState(44);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__1:
-				_localctx = new ExprFcCreationContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(39);
+				setState(41);
 				fcCreation();
 				}
 				break;
 			case T__4:
-				_localctx = new ExprSelCreationContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(40);
+				setState(42);
 				selCreation();
 				}
 				break;
 			case ID:
-				_localctx = new ExprIDContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(41);
+				setState(43);
 				match(ID);
 				}
 				break;
@@ -427,29 +346,20 @@ public class fspowParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class FcCreationContext extends ParserRuleContext {
+		public RootSpecifierContext rootSpecifier() {
+			return getRuleContext(RootSpecifierContext.class,0);
+		}
 		public FcCreationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_fcCreation; }
-	 
-		public FcCreationContext() { }
-		public void copyFrom(FcCreationContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class FcCreationNameContext extends FcCreationContext {
-		public RootSpecifierContext rootSpecifier() {
-			return getRuleContext(RootSpecifierContext.class,0);
-		}
-		public FcCreationNameContext(FcCreationContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterFcCreationName(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterFcCreation(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitFcCreationName(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitFcCreation(this);
 		}
 	}
 
@@ -457,16 +367,15 @@ public class fspowParser extends Parser {
 		FcCreationContext _localctx = new FcCreationContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_fcCreation);
 		try {
-			_localctx = new FcCreationNameContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
-			match(T__1);
-			setState(45);
-			match(T__2);
 			setState(46);
-			rootSpecifier();
+			match(T__1);
 			setState(47);
+			match(T__2);
+			setState(48);
+			rootSpecifier();
+			setState(49);
 			match(T__3);
 			}
 		}
@@ -483,29 +392,20 @@ public class fspowParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class SelCreationContext extends ParserRuleContext {
+		public SelfilterContext selfilter() {
+			return getRuleContext(SelfilterContext.class,0);
+		}
 		public SelCreationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_selCreation; }
-	 
-		public SelCreationContext() { }
-		public void copyFrom(SelCreationContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class SelCreationNameContext extends SelCreationContext {
-		public SelfilterContext selfilter() {
-			return getRuleContext(SelfilterContext.class,0);
-		}
-		public SelCreationNameContext(SelCreationContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterSelCreationName(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterSelCreation(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitSelCreationName(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitSelCreation(this);
 		}
 	}
 
@@ -513,16 +413,15 @@ public class fspowParser extends Parser {
 		SelCreationContext _localctx = new SelCreationContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_selCreation);
 		try {
-			_localctx = new SelCreationNameContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(49);
-			match(T__4);
-			setState(50);
-			match(T__2);
 			setState(51);
-			selfilter(0);
+			match(T__4);
 			setState(52);
+			match(T__2);
+			setState(53);
+			selfilter(0);
+			setState(54);
 			match(T__3);
 			}
 		}
@@ -539,101 +438,29 @@ public class fspowParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class SelfilterContext extends ParserRuleContext {
-		public SelfilterContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_selfilter; }
-	 
-		public SelfilterContext() { }
-		public void copyFrom(SelfilterContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class FilterNotContext extends SelfilterContext {
-		public SelfilterContext selfilter() {
-			return getRuleContext(SelfilterContext.class,0);
-		}
-		public FilterNotContext(SelfilterContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterFilterNot(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitFilterNot(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class FilterSizeContext extends SelfilterContext {
 		public TerminalNode STRING() { return getToken(fspowParser.STRING, 0); }
-		public FilterSizeContext(SelfilterContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterFilterSize(this);
+		public TerminalNode NUMBER() { return getToken(fspowParser.NUMBER, 0); }
+		public TerminalNode COMMA() { return getToken(fspowParser.COMMA, 0); }
+		public TopAttrContext topAttr() {
+			return getRuleContext(TopAttrContext.class,0);
 		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitFilterSize(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class FilterParensContext extends SelfilterContext {
-		public SelfilterContext selfilter() {
-			return getRuleContext(SelfilterContext.class,0);
-		}
-		public FilterParensContext(SelfilterContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterFilterParens(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitFilterParens(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class FilterNameContext extends SelfilterContext {
-		public TerminalNode STRING() { return getToken(fspowParser.STRING, 0); }
-		public FilterNameContext(SelfilterContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterFilterName(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitFilterName(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class FilterDateContext extends SelfilterContext {
-		public TerminalNode STRING() { return getToken(fspowParser.STRING, 0); }
-		public FilterDateContext(SelfilterContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterFilterDate(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitFilterDate(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class FilterIntersectContext extends SelfilterContext {
 		public List<SelfilterContext> selfilter() {
 			return getRuleContexts(SelfilterContext.class);
 		}
 		public SelfilterContext selfilter(int i) {
 			return getRuleContext(SelfilterContext.class,i);
 		}
-		public FilterIntersectContext(SelfilterContext ctx) { copyFrom(ctx); }
+		public SelfilterContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_selfilter; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterFilterIntersect(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterSelfilter(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitFilterIntersect(this);
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitSelfilter(this);
 		}
 	}
 
@@ -652,80 +479,80 @@ public class fspowParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(76);
+			setState(85);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__5:
 				{
-				_localctx = new FilterNameContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-
-				setState(55);
-				match(T__5);
-				setState(56);
-				match(T__2);
 				setState(57);
-				match(STRING);
+				match(T__5);
 				setState(58);
+				match(T__2);
+				setState(59);
+				match(STRING);
+				setState(60);
 				match(T__3);
 				}
 				break;
 			case T__6:
 				{
-				_localctx = new FilterSizeContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(59);
-				match(T__6);
-				setState(60);
-				match(T__2);
 				setState(61);
-				match(STRING);
+				match(T__6);
 				setState(62);
+				match(T__2);
+				setState(63);
+				match(STRING);
+				setState(64);
 				match(T__3);
 				}
 				break;
 			case T__7:
 				{
-				_localctx = new FilterDateContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(63);
-				match(T__7);
-				setState(64);
-				match(T__2);
 				setState(65);
-				match(STRING);
+				match(T__7);
 				setState(66);
+				match(T__2);
+				setState(67);
+				match(STRING);
+				setState(68);
 				match(T__3);
 				}
 				break;
-			case T__9:
+			case T__8:
 				{
-				_localctx = new FilterNotContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(67);
-				match(T__9);
-				setState(68);
-				match(T__2);
 				setState(69);
-				selfilter(0);
+				match(T__8);
 				setState(70);
+				match(T__2);
+				setState(71);
+				match(NUMBER);
+				setState(72);
+				match(COMMA);
+				setState(73);
+				topAttr();
+				setState(74);
+				match(T__3);
+				}
+				break;
+			case T__10:
+				{
+				setState(76);
+				match(T__10);
+				setState(77);
+				match(T__2);
+				setState(78);
+				selfilter(0);
+				setState(79);
 				match(T__3);
 				}
 				break;
 			case T__2:
 				{
-				_localctx = new FilterParensContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(72);
+				setState(81);
 				match(T__2);
-				setState(73);
+				setState(82);
 				selfilter(0);
-				setState(74);
+				setState(83);
 				match(T__3);
 				}
 				break;
@@ -733,7 +560,7 @@ public class fspowParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(83);
+			setState(92);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -742,18 +569,18 @@ public class fspowParser extends Parser {
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new FilterIntersectContext(new SelfilterContext(_parentctx, _parentState));
+					_localctx = new SelfilterContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_selfilter);
-					setState(78);
+					setState(87);
 					if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-					setState(79);
-					match(T__8);
-					setState(80);
+					setState(88);
+					match(T__9);
+					setState(89);
 					selfilter(4);
 					}
 					} 
 				}
-				setState(85);
+				setState(94);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			}
@@ -766,6 +593,52 @@ public class fspowParser extends Parser {
 		}
 		finally {
 			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
+	public static class TopAttrContext extends ParserRuleContext {
+		public TopAttrContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_topAttr; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).enterTopAttr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof fspowListener ) ((fspowListener)listener).exitTopAttr(this);
+		}
+	}
+
+	public final TopAttrContext topAttr() throws RecognitionException {
+		TopAttrContext _localctx = new TopAttrContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_topAttr);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(95);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 61440L) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
 		}
 		return _localctx;
 	}
@@ -792,19 +665,25 @@ public class fspowParser extends Parser {
 
 	public final FcApplySelectorContext fcApplySelector() throws RecognitionException {
 		FcApplySelectorContext _localctx = new FcApplySelectorContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_fcApplySelector);
+		enterRule(_localctx, 16, RULE_fcApplySelector);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(86);
+			setState(97);
 			match(ID);
-			setState(87);
-			match(T__10);
-			setState(88);
+			setState(98);
+			match(T__0);
+			setState(99);
+			match(ID);
+			setState(100);
+			match(T__15);
+			setState(101);
+			match(T__16);
+			setState(102);
 			match(T__2);
-			setState(89);
+			setState(103);
 			match(ID);
-			setState(90);
+			setState(104);
 			match(T__3);
 			}
 		}
@@ -838,17 +717,17 @@ public class fspowParser extends Parser {
 
 	public final FcListContext fcList() throws RecognitionException {
 		FcListContext _localctx = new FcListContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_fcList);
+		enterRule(_localctx, 18, RULE_fcList);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(92);
+			setState(106);
 			match(ID);
-			setState(93);
-			match(T__11);
-			setState(94);
+			setState(107);
+			match(T__17);
+			setState(108);
 			match(T__2);
-			setState(95);
+			setState(109);
 			match(T__3);
 			}
 		}
@@ -882,17 +761,17 @@ public class fspowParser extends Parser {
 
 	public final MessageContext message() throws RecognitionException {
 		MessageContext _localctx = new MessageContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_message);
+		enterRule(_localctx, 20, RULE_message);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(97);
-			match(T__12);
-			setState(98);
+			setState(111);
+			match(T__18);
+			setState(112);
 			match(T__2);
-			setState(99);
+			setState(113);
 			match(STRING);
-			setState(100);
+			setState(114);
 			match(T__3);
 			}
 		}
@@ -926,11 +805,11 @@ public class fspowParser extends Parser {
 
 	public final RootSpecifierContext rootSpecifier() throws RecognitionException {
 		RootSpecifierContext _localctx = new RootSpecifierContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_rootSpecifier);
+		enterRule(_localctx, 22, RULE_rootSpecifier);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(102);
+			setState(116);
 			match(STRING);
 			}
 		}
@@ -961,65 +840,72 @@ public class fspowParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0011i\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u0019w\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
-		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0001\u0000\u0004\u0000\u0018"+
-		"\b\u0000\u000b\u0000\f\u0000\u0019\u0001\u0000\u0001\u0000\u0001\u0001"+
-		"\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001\"\b\u0001\u0001\u0002"+
-		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003"+
-		"\u0003\u0003+\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
-		"\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0001"+
+		"\u0000\u0004\u0000\u001a\b\u0000\u000b\u0000\f\u0000\u001b\u0001\u0000"+
+		"\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001"+
+		"$\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0003"+
+		"\u0001\u0003\u0001\u0003\u0003\u0003-\b\u0003\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
 		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
 		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
 		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
-		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0003\u0006M\b\u0006"+
-		"\u0001\u0006\u0001\u0006\u0001\u0006\u0005\u0006R\b\u0006\n\u0006\f\u0006"+
-		"U\t\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007"+
-		"\u0001\u0007\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001"+
-		"\t\u0001\t\u0001\t\u0001\n\u0001\n\u0001\n\u0000\u0001\f\u000b\u0000\u0002"+
-		"\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0000\u0000h\u0000\u0017\u0001"+
-		"\u0000\u0000\u0000\u0002!\u0001\u0000\u0000\u0000\u0004#\u0001\u0000\u0000"+
-		"\u0000\u0006*\u0001\u0000\u0000\u0000\b,\u0001\u0000\u0000\u0000\n1\u0001"+
-		"\u0000\u0000\u0000\fL\u0001\u0000\u0000\u0000\u000eV\u0001\u0000\u0000"+
-		"\u0000\u0010\\\u0001\u0000\u0000\u0000\u0012a\u0001\u0000\u0000\u0000"+
-		"\u0014f\u0001\u0000\u0000\u0000\u0016\u0018\u0003\u0002\u0001\u0000\u0017"+
-		"\u0016\u0001\u0000\u0000\u0000\u0018\u0019\u0001\u0000\u0000\u0000\u0019"+
-		"\u0017\u0001\u0000\u0000\u0000\u0019\u001a\u0001\u0000\u0000\u0000\u001a"+
-		"\u001b\u0001\u0000\u0000\u0000\u001b\u001c\u0005\u0000\u0000\u0001\u001c"+
-		"\u0001\u0001\u0000\u0000\u0000\u001d\"\u0003\u0004\u0002\u0000\u001e\""+
-		"\u0003\u000e\u0007\u0000\u001f\"\u0003\u0010\b\u0000 \"\u0003\u0012\t"+
-		"\u0000!\u001d\u0001\u0000\u0000\u0000!\u001e\u0001\u0000\u0000\u0000!"+
-		"\u001f\u0001\u0000\u0000\u0000! \u0001\u0000\u0000\u0000\"\u0003\u0001"+
-		"\u0000\u0000\u0000#$\u0005\u000e\u0000\u0000$%\u0005\u0001\u0000\u0000"+
-		"%&\u0003\u0006\u0003\u0000&\u0005\u0001\u0000\u0000\u0000\'+\u0003\b\u0004"+
-		"\u0000(+\u0003\n\u0005\u0000)+\u0005\u000e\u0000\u0000*\'\u0001\u0000"+
-		"\u0000\u0000*(\u0001\u0000\u0000\u0000*)\u0001\u0000\u0000\u0000+\u0007"+
-		"\u0001\u0000\u0000\u0000,-\u0005\u0002\u0000\u0000-.\u0005\u0003\u0000"+
-		"\u0000./\u0003\u0014\n\u0000/0\u0005\u0004\u0000\u00000\t\u0001\u0000"+
-		"\u0000\u000012\u0005\u0005\u0000\u000023\u0005\u0003\u0000\u000034\u0003"+
-		"\f\u0006\u000045\u0005\u0004\u0000\u00005\u000b\u0001\u0000\u0000\u0000"+
-		"67\u0006\u0006\uffff\uffff\u000078\u0005\u0006\u0000\u000089\u0005\u0003"+
-		"\u0000\u00009:\u0005\u000f\u0000\u0000:M\u0005\u0004\u0000\u0000;<\u0005"+
-		"\u0007\u0000\u0000<=\u0005\u0003\u0000\u0000=>\u0005\u000f\u0000\u0000"+
-		">M\u0005\u0004\u0000\u0000?@\u0005\b\u0000\u0000@A\u0005\u0003\u0000\u0000"+
-		"AB\u0005\u000f\u0000\u0000BM\u0005\u0004\u0000\u0000CD\u0005\n\u0000\u0000"+
-		"DE\u0005\u0003\u0000\u0000EF\u0003\f\u0006\u0000FG\u0005\u0004\u0000\u0000"+
-		"GM\u0001\u0000\u0000\u0000HI\u0005\u0003\u0000\u0000IJ\u0003\f\u0006\u0000"+
-		"JK\u0005\u0004\u0000\u0000KM\u0001\u0000\u0000\u0000L6\u0001\u0000\u0000"+
-		"\u0000L;\u0001\u0000\u0000\u0000L?\u0001\u0000\u0000\u0000LC\u0001\u0000"+
-		"\u0000\u0000LH\u0001\u0000\u0000\u0000MS\u0001\u0000\u0000\u0000NO\n\u0003"+
-		"\u0000\u0000OP\u0005\t\u0000\u0000PR\u0003\f\u0006\u0004QN\u0001\u0000"+
-		"\u0000\u0000RU\u0001\u0000\u0000\u0000SQ\u0001\u0000\u0000\u0000ST\u0001"+
-		"\u0000\u0000\u0000T\r\u0001\u0000\u0000\u0000US\u0001\u0000\u0000\u0000"+
-		"VW\u0005\u000e\u0000\u0000WX\u0005\u000b\u0000\u0000XY\u0005\u0003\u0000"+
-		"\u0000YZ\u0005\u000e\u0000\u0000Z[\u0005\u0004\u0000\u0000[\u000f\u0001"+
-		"\u0000\u0000\u0000\\]\u0005\u000e\u0000\u0000]^\u0005\f\u0000\u0000^_"+
-		"\u0005\u0003\u0000\u0000_`\u0005\u0004\u0000\u0000`\u0011\u0001\u0000"+
-		"\u0000\u0000ab\u0005\r\u0000\u0000bc\u0005\u0003\u0000\u0000cd\u0005\u000f"+
-		"\u0000\u0000de\u0005\u0004\u0000\u0000e\u0013\u0001\u0000\u0000\u0000"+
-		"fg\u0005\u000f\u0000\u0000g\u0015\u0001\u0000\u0000\u0000\u0005\u0019"+
-		"!*LS";
+		"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
+		"\u0001\u0006\u0003\u0006V\b\u0006\u0001\u0006\u0001\u0006\u0001\u0006"+
+		"\u0005\u0006[\b\u0006\n\u0006\f\u0006^\t\u0006\u0001\u0007\u0001\u0007"+
+		"\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001"+
+		"\b\u0001\t\u0001\t\u0001\t\u0001\t\u0001\t\u0001\n\u0001\n\u0001\n\u0001"+
+		"\n\u0001\n\u0001\u000b\u0001\u000b\u0001\u000b\u0000\u0001\f\f\u0000\u0002"+
+		"\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0000\u0001\u0001\u0000"+
+		"\f\u000fv\u0000\u0019\u0001\u0000\u0000\u0000\u0002#\u0001\u0000\u0000"+
+		"\u0000\u0004%\u0001\u0000\u0000\u0000\u0006,\u0001\u0000\u0000\u0000\b"+
+		".\u0001\u0000\u0000\u0000\n3\u0001\u0000\u0000\u0000\fU\u0001\u0000\u0000"+
+		"\u0000\u000e_\u0001\u0000\u0000\u0000\u0010a\u0001\u0000\u0000\u0000\u0012"+
+		"j\u0001\u0000\u0000\u0000\u0014o\u0001\u0000\u0000\u0000\u0016t\u0001"+
+		"\u0000\u0000\u0000\u0018\u001a\u0003\u0002\u0001\u0000\u0019\u0018\u0001"+
+		"\u0000\u0000\u0000\u001a\u001b\u0001\u0000\u0000\u0000\u001b\u0019\u0001"+
+		"\u0000\u0000\u0000\u001b\u001c\u0001\u0000\u0000\u0000\u001c\u001d\u0001"+
+		"\u0000\u0000\u0000\u001d\u001e\u0005\u0000\u0000\u0001\u001e\u0001\u0001"+
+		"\u0000\u0000\u0000\u001f$\u0003\u0004\u0002\u0000 $\u0003\u0010\b\u0000"+
+		"!$\u0003\u0012\t\u0000\"$\u0003\u0014\n\u0000#\u001f\u0001\u0000\u0000"+
+		"\u0000# \u0001\u0000\u0000\u0000#!\u0001\u0000\u0000\u0000#\"\u0001\u0000"+
+		"\u0000\u0000$\u0003\u0001\u0000\u0000\u0000%&\u0005\u0014\u0000\u0000"+
+		"&\'\u0005\u0001\u0000\u0000\'(\u0003\u0006\u0003\u0000(\u0005\u0001\u0000"+
+		"\u0000\u0000)-\u0003\b\u0004\u0000*-\u0003\n\u0005\u0000+-\u0005\u0014"+
+		"\u0000\u0000,)\u0001\u0000\u0000\u0000,*\u0001\u0000\u0000\u0000,+\u0001"+
+		"\u0000\u0000\u0000-\u0007\u0001\u0000\u0000\u0000./\u0005\u0002\u0000"+
+		"\u0000/0\u0005\u0003\u0000\u000001\u0003\u0016\u000b\u000012\u0005\u0004"+
+		"\u0000\u00002\t\u0001\u0000\u0000\u000034\u0005\u0005\u0000\u000045\u0005"+
+		"\u0003\u0000\u000056\u0003\f\u0006\u000067\u0005\u0004\u0000\u00007\u000b"+
+		"\u0001\u0000\u0000\u000089\u0006\u0006\uffff\uffff\u00009:\u0005\u0006"+
+		"\u0000\u0000:;\u0005\u0003\u0000\u0000;<\u0005\u0015\u0000\u0000<V\u0005"+
+		"\u0004\u0000\u0000=>\u0005\u0007\u0000\u0000>?\u0005\u0003\u0000\u0000"+
+		"?@\u0005\u0015\u0000\u0000@V\u0005\u0004\u0000\u0000AB\u0005\b\u0000\u0000"+
+		"BC\u0005\u0003\u0000\u0000CD\u0005\u0015\u0000\u0000DV\u0005\u0004\u0000"+
+		"\u0000EF\u0005\t\u0000\u0000FG\u0005\u0003\u0000\u0000GH\u0005\u0017\u0000"+
+		"\u0000HI\u0005\u0016\u0000\u0000IJ\u0003\u000e\u0007\u0000JK\u0005\u0004"+
+		"\u0000\u0000KV\u0001\u0000\u0000\u0000LM\u0005\u000b\u0000\u0000MN\u0005"+
+		"\u0003\u0000\u0000NO\u0003\f\u0006\u0000OP\u0005\u0004\u0000\u0000PV\u0001"+
+		"\u0000\u0000\u0000QR\u0005\u0003\u0000\u0000RS\u0003\f\u0006\u0000ST\u0005"+
+		"\u0004\u0000\u0000TV\u0001\u0000\u0000\u0000U8\u0001\u0000\u0000\u0000"+
+		"U=\u0001\u0000\u0000\u0000UA\u0001\u0000\u0000\u0000UE\u0001\u0000\u0000"+
+		"\u0000UL\u0001\u0000\u0000\u0000UQ\u0001\u0000\u0000\u0000V\\\u0001\u0000"+
+		"\u0000\u0000WX\n\u0003\u0000\u0000XY\u0005\n\u0000\u0000Y[\u0003\f\u0006"+
+		"\u0004ZW\u0001\u0000\u0000\u0000[^\u0001\u0000\u0000\u0000\\Z\u0001\u0000"+
+		"\u0000\u0000\\]\u0001\u0000\u0000\u0000]\r\u0001\u0000\u0000\u0000^\\"+
+		"\u0001\u0000\u0000\u0000_`\u0007\u0000\u0000\u0000`\u000f\u0001\u0000"+
+		"\u0000\u0000ab\u0005\u0014\u0000\u0000bc\u0005\u0001\u0000\u0000cd\u0005"+
+		"\u0014\u0000\u0000de\u0005\u0010\u0000\u0000ef\u0005\u0011\u0000\u0000"+
+		"fg\u0005\u0003\u0000\u0000gh\u0005\u0014\u0000\u0000hi\u0005\u0004\u0000"+
+		"\u0000i\u0011\u0001\u0000\u0000\u0000jk\u0005\u0014\u0000\u0000kl\u0005"+
+		"\u0012\u0000\u0000lm\u0005\u0003\u0000\u0000mn\u0005\u0004\u0000\u0000"+
+		"n\u0013\u0001\u0000\u0000\u0000op\u0005\u0013\u0000\u0000pq\u0005\u0003"+
+		"\u0000\u0000qr\u0005\u0015\u0000\u0000rs\u0005\u0004\u0000\u0000s\u0015"+
+		"\u0001\u0000\u0000\u0000tu\u0005\u0015\u0000\u0000u\u0017\u0001\u0000"+
+		"\u0000\u0000\u0005\u001b#,U\\";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

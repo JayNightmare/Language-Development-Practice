@@ -28,49 +28,13 @@ public class fspowBaseListener implements fspowListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatAssignment(fspowParser.StatAssignmentContext ctx) { }
+	@Override public void enterStat(fspowParser.StatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatAssignment(fspowParser.StatAssignmentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStatFcApplySelector(fspowParser.StatFcApplySelectorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStatFcApplySelector(fspowParser.StatFcApplySelectorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStatFcList(fspowParser.StatFcListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStatFcList(fspowParser.StatFcListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStatMessage(fspowParser.StatMessageContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStatMessage(fspowParser.StatMessageContext ctx) { }
+	@Override public void exitStat(fspowParser.StatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -88,133 +52,61 @@ public class fspowBaseListener implements fspowListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExprFcCreation(fspowParser.ExprFcCreationContext ctx) { }
+	@Override public void enterExpression(fspowParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExprFcCreation(fspowParser.ExprFcCreationContext ctx) { }
+	@Override public void exitExpression(fspowParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExprSelCreation(fspowParser.ExprSelCreationContext ctx) { }
+	@Override public void enterFcCreation(fspowParser.FcCreationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExprSelCreation(fspowParser.ExprSelCreationContext ctx) { }
+	@Override public void exitFcCreation(fspowParser.FcCreationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExprID(fspowParser.ExprIDContext ctx) { }
+	@Override public void enterSelCreation(fspowParser.SelCreationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExprID(fspowParser.ExprIDContext ctx) { }
+	@Override public void exitSelCreation(fspowParser.SelCreationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFcCreationName(fspowParser.FcCreationNameContext ctx) { }
+	@Override public void enterSelfilter(fspowParser.SelfilterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFcCreationName(fspowParser.FcCreationNameContext ctx) { }
+	@Override public void exitSelfilter(fspowParser.SelfilterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSelCreationName(fspowParser.SelCreationNameContext ctx) { }
+	@Override public void enterTopAttr(fspowParser.TopAttrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSelCreationName(fspowParser.SelCreationNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFilterNot(fspowParser.FilterNotContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFilterNot(fspowParser.FilterNotContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFilterSize(fspowParser.FilterSizeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFilterSize(fspowParser.FilterSizeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFilterParens(fspowParser.FilterParensContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFilterParens(fspowParser.FilterParensContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFilterName(fspowParser.FilterNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFilterName(fspowParser.FilterNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFilterDate(fspowParser.FilterDateContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFilterDate(fspowParser.FilterDateContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFilterIntersect(fspowParser.FilterIntersectContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFilterIntersect(fspowParser.FilterIntersectContext ctx) { }
+	@Override public void exitTopAttr(fspowParser.TopAttrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

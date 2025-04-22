@@ -17,53 +17,15 @@ public interface fspowListener extends ParseTreeListener {
 	 */
 	void exitProg(fspowParser.ProgContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code StatAssignment}
-	 * labeled alternative in {@link fspowParser#stat}.
+	 * Enter a parse tree produced by {@link fspowParser#stat}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatAssignment(fspowParser.StatAssignmentContext ctx);
+	void enterStat(fspowParser.StatContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code StatAssignment}
-	 * labeled alternative in {@link fspowParser#stat}.
+	 * Exit a parse tree produced by {@link fspowParser#stat}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatAssignment(fspowParser.StatAssignmentContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code StatFcApplySelector}
-	 * labeled alternative in {@link fspowParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterStatFcApplySelector(fspowParser.StatFcApplySelectorContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code StatFcApplySelector}
-	 * labeled alternative in {@link fspowParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitStatFcApplySelector(fspowParser.StatFcApplySelectorContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code StatFcList}
-	 * labeled alternative in {@link fspowParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterStatFcList(fspowParser.StatFcListContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code StatFcList}
-	 * labeled alternative in {@link fspowParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitStatFcList(fspowParser.StatFcListContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code StatMessage}
-	 * labeled alternative in {@link fspowParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterStatMessage(fspowParser.StatMessageContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code StatMessage}
-	 * labeled alternative in {@link fspowParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitStatMessage(fspowParser.StatMessageContext ctx);
+	void exitStat(fspowParser.StatContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link fspowParser#assignment}.
 	 * @param ctx the parse tree
@@ -75,137 +37,55 @@ public interface fspowListener extends ParseTreeListener {
 	 */
 	void exitAssignment(fspowParser.AssignmentContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ExprFcCreation}
-	 * labeled alternative in {@link fspowParser#expression}.
+	 * Enter a parse tree produced by {@link fspowParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterExprFcCreation(fspowParser.ExprFcCreationContext ctx);
+	void enterExpression(fspowParser.ExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ExprFcCreation}
-	 * labeled alternative in {@link fspowParser#expression}.
+	 * Exit a parse tree produced by {@link fspowParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitExprFcCreation(fspowParser.ExprFcCreationContext ctx);
+	void exitExpression(fspowParser.ExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ExprSelCreation}
-	 * labeled alternative in {@link fspowParser#expression}.
+	 * Enter a parse tree produced by {@link fspowParser#fcCreation}.
 	 * @param ctx the parse tree
 	 */
-	void enterExprSelCreation(fspowParser.ExprSelCreationContext ctx);
+	void enterFcCreation(fspowParser.FcCreationContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ExprSelCreation}
-	 * labeled alternative in {@link fspowParser#expression}.
+	 * Exit a parse tree produced by {@link fspowParser#fcCreation}.
 	 * @param ctx the parse tree
 	 */
-	void exitExprSelCreation(fspowParser.ExprSelCreationContext ctx);
+	void exitFcCreation(fspowParser.FcCreationContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ExprID}
-	 * labeled alternative in {@link fspowParser#expression}.
+	 * Enter a parse tree produced by {@link fspowParser#selCreation}.
 	 * @param ctx the parse tree
 	 */
-	void enterExprID(fspowParser.ExprIDContext ctx);
+	void enterSelCreation(fspowParser.SelCreationContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ExprID}
-	 * labeled alternative in {@link fspowParser#expression}.
+	 * Exit a parse tree produced by {@link fspowParser#selCreation}.
 	 * @param ctx the parse tree
 	 */
-	void exitExprID(fspowParser.ExprIDContext ctx);
+	void exitSelCreation(fspowParser.SelCreationContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code FcCreationName}
-	 * labeled alternative in {@link fspowParser#fcCreation}.
+	 * Enter a parse tree produced by {@link fspowParser#selfilter}.
 	 * @param ctx the parse tree
 	 */
-	void enterFcCreationName(fspowParser.FcCreationNameContext ctx);
+	void enterSelfilter(fspowParser.SelfilterContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code FcCreationName}
-	 * labeled alternative in {@link fspowParser#fcCreation}.
+	 * Exit a parse tree produced by {@link fspowParser#selfilter}.
 	 * @param ctx the parse tree
 	 */
-	void exitFcCreationName(fspowParser.FcCreationNameContext ctx);
+	void exitSelfilter(fspowParser.SelfilterContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code SelCreationName}
-	 * labeled alternative in {@link fspowParser#selCreation}.
+	 * Enter a parse tree produced by {@link fspowParser#topAttr}.
 	 * @param ctx the parse tree
 	 */
-	void enterSelCreationName(fspowParser.SelCreationNameContext ctx);
+	void enterTopAttr(fspowParser.TopAttrContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code SelCreationName}
-	 * labeled alternative in {@link fspowParser#selCreation}.
+	 * Exit a parse tree produced by {@link fspowParser#topAttr}.
 	 * @param ctx the parse tree
 	 */
-	void exitSelCreationName(fspowParser.SelCreationNameContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code FilterNot}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void enterFilterNot(fspowParser.FilterNotContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code FilterNot}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void exitFilterNot(fspowParser.FilterNotContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code FilterSize}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void enterFilterSize(fspowParser.FilterSizeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code FilterSize}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void exitFilterSize(fspowParser.FilterSizeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code FilterParens}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void enterFilterParens(fspowParser.FilterParensContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code FilterParens}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void exitFilterParens(fspowParser.FilterParensContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code FilterName}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void enterFilterName(fspowParser.FilterNameContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code FilterName}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void exitFilterName(fspowParser.FilterNameContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code FilterDate}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void enterFilterDate(fspowParser.FilterDateContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code FilterDate}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void exitFilterDate(fspowParser.FilterDateContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code FilterIntersect}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void enterFilterIntersect(fspowParser.FilterIntersectContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code FilterIntersect}
-	 * labeled alternative in {@link fspowParser#selfilter}.
-	 * @param ctx the parse tree
-	 */
-	void exitFilterIntersect(fspowParser.FilterIntersectContext ctx);
+	void exitTopAttr(fspowParser.TopAttrContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link fspowParser#fcApplySelector}.
 	 * @param ctx the parse tree
