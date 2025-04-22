@@ -170,42 +170,6 @@ class fspowListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by fspowParser#fcApplySelector.
-    def enterFcApplySelector(self, ctx:fspowParser.FcApplySelectorContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#fcApplySelector.
-    def exitFcApplySelector(self, ctx:fspowParser.FcApplySelectorContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#fcList.
-    def enterFcList(self, ctx:fspowParser.FcListContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#fcList.
-    def exitFcList(self, ctx:fspowParser.FcListContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#message.
-    def enterMessage(self, ctx:fspowParser.MessageContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#message.
-    def exitMessage(self, ctx:fspowParser.MessageContext):
-        pass
-
-
-    # Enter a parse tree produced by fspowParser#rootSpecifier.
-    def enterRootSpecifier(self, ctx:fspowParser.RootSpecifierContext):
-        pass
-
-    # Exit a parse tree produced by fspowParser#rootSpecifier.
-    def exitRootSpecifier(self, ctx:fspowParser.RootSpecifierContext):
-        pass
-
-
     # Enter a parse tree produced by fspowParser#AttrBiggest.
     def enterAttrBiggest(self, ctx:fspowParser.AttrBiggestContext):
         pass
@@ -239,6 +203,42 @@ class fspowListener(ParseTreeListener):
 
     # Exit a parse tree produced by fspowParser#AttrNewest.
     def exitAttrNewest(self, ctx:fspowParser.AttrNewestContext):
+        pass
+
+
+    # Enter a parse tree produced by fspowParser#fcApplySelector.
+    def enterFcApplySelector(self, ctx:fspowParser.FcApplySelectorContext):
+        pass
+
+    # Exit a parse tree produced by fspowParser#fcApplySelector.
+    def exitFcApplySelector(self, ctx:fspowParser.FcApplySelectorContext):
+        pass
+
+
+    # Enter a parse tree produced by fspowParser#fcList.
+    def enterFcList(self, ctx:fspowParser.FcListContext):
+        pass
+
+    # Exit a parse tree produced by fspowParser#fcList.
+    def exitFcList(self, ctx:fspowParser.FcListContext):
+        pass
+
+
+    # Enter a parse tree produced by fspowParser#message.
+    def enterMessage(self, ctx:fspowParser.MessageContext):
+        pass
+
+    # Exit a parse tree produced by fspowParser#message.
+    def exitMessage(self, ctx:fspowParser.MessageContext):
+        pass
+
+
+    # Enter a parse tree produced by fspowParser#rootSpecifier.
+    def enterRootSpecifier(self, ctx:fspowParser.RootSpecifierContext):
+        pass
+
+    # Exit a parse tree produced by fspowParser#rootSpecifier.
+    def exitRootSpecifier(self, ctx:fspowParser.RootSpecifierContext):
         pass
 
 
