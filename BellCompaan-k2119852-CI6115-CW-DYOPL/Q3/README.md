@@ -1,93 +1,112 @@
-# Enhanced FSPOW Implementation
+# FSPOW Language Implementation
 
-This implementation extends the basic FSPOW language to support complex filter combinations using logical operators. The enhanced version allows for combining file filters using `intersect` and `not` operations.
+This project implements the FSPOW language, a domain-specific language for managing and filtering file collections. The implementation includes a lexer, parser, and interpreter for executing FSPOW scripts.
 
-## Features
+## Objective
+The main objective of this project is to provide a functional interpreter for the FSPOW language, allowing users to:
 
-### Grammar Enhancements
-- Added support for `intersect` operation between filters
-- Added support for `not` operation to negate filters
-- Added support for parentheses to group filter expressions
-- Maintained support for basic filters: name, size, and date
+1. Create file collections from directories.
+2. Apply various filters to file collections, such as filtering by name, size, date, or selecting top files based on specific attributes.
+3. Combine filters using logical operations like `intersect` and `not`.
+4. Display filtered results and messages to the user.
 
-### Filter Types
-1. **Name Filter**: Matches files by name pattern
-   ```
-   name("*.mp4")
-   ```
+## Key Features
 
-2. **Size Filter**: Matches files by size with comparison operators
-   ```
-   size("> 300M")  // Larger than 300MB
-   size("< 1G")    // Smaller than 1GB
-   ```
+### Language Capabilities
+- **File Collection Creation**: Create a collection of files from a specified directory.
+  ```fspow
+  fc = FileCollection(".")
+  ```
 
-3. **Date Filter**: Matches files by modification time
-   ```
-   date(">1year")    // Older than 1 year
-   date("<6months")  // Newer than 6 months
-   ```
+- **Filters**:
+  - **Name Filter**: Filter files by name pattern.
+    ```fspow
+    sel = Selector(name("*.mp4"))
+    ```
+  - **Size Filter**: Filter files by size.
+    ```fspow
+    sel = Selector(size("> 300M"))
+    ```
+  - **Date Filter**: Filter files by modification date.
+    ```fspow
+    sel = Selector(date("<6months"))
+    ```
+  - **Top Filter**: Select top files based on attributes like size or date.
+    ```fspow
+    sel = Selector(top(10, Biggest))
+    ```
 
-### Complex Filter Combinations
-The implementation supports nested combinations of filters. For example:
-```
-// MP4 files that are NOT (larger than 300MB AND older than 1 year)
-complexFiles = Selector(name("*.mp4") intersect (not (size("> 300M") intersect date(">1year"))))
-```
+- **Logical Operations**:
+  - Combine filters using `intersect`.
+    ```fspow
+    sel = Selector(name("*.mp4") intersect size("> 300M"))
+    ```
+  - Negate filters using `not`.
+    ```fspow
+    sel = Selector(not(size("< 1G")))
+    ```
 
-## Testing
+- **Display Results**:
+  - List files in a collection.
+    ```fspow
+    fc.list()
+    ```
+  - Display messages.
+    ```fspow
+    message("Top 10 biggest files:")
+    ```
 
-The implementation includes comprehensive testing:
-
-1. **Basic Filter Tests** (`test_cases.py`)
-   - Individual filter operations
-   - File pattern matching
-   - Size comparisons
-   - Date filtering
-
-2. **Complex Filter Tests** (`test_cases.py`)
-   - Nested filter combinations
-   - Intersection operations
-   - Negation operations
-   - Edge cases
-
-3. **Example Script** (`example.fspow`)
-   - Demonstrates real-world usage
-   - Shows complex filter combinations
-   - Includes various file operations
+### Implementation Details
+- **ANTLR Grammar**: The `fspow.g4` file defines the syntax and semantics of the FSPOW language.
+- **Python Interpreter**: The `main.py` file implements the interpreter using the generated lexer and parser.
+- **File Management**:
+  - `FileCollection.py`: Manages file collections and applies filters.
+  - `FSObject.py`: Represents individual file system objects.
+- **Filters**:
+  - `Selector.py`: Implements filtering logic and operations.
 
 ## Usage
 
-1. Run the test cases:
-   ```
-   python test_cases.py
-   ```
-
-2. Run an FSPOW script:
-   ```
-   python main.py example.fspow
-   ```
-
-## Implementation Details
-
-- `fspow.g4`: ANTLR4 grammar file defining the enhanced syntax
-- `Selector.py`: Implements filter operations and combinations
-- `FileCollection.py`: Manages file collections and applies selectors
-- `FSObject.py`: Represents file system objects
-- `main.py`: ANTLR parser and script execution
-- `test_cases.py`: Comprehensive test suite
-
-## Example Script
-
-The `example.fspow` script demonstrates various filter combinations:
-```
-allFiles = FileCollection("test_files")
-complexSelector = Selector(name("*.mp4") intersect (not (size("> 300M") intersect date(">1year"))))
-allFiles.apply(complexSelector)
+### Running a Script
+To execute an FSPOW script, use the following command:
+```bash
+python main.py example.fspow
 ```
 
-This implementation satisfies all requirements from the assignment:
-- Correct syntax enhancements [3 marks]
-- Evidence of testing syntax enhancements [2 marks]
-- Translation into Python [3 marks]
-- Extensive testing of fspow scripts [4 marks]
+### Example Script
+The `example.fspow` script demonstrates the language's capabilities:
+```fspow
+// Create a file collection from the current directory
+fc = FileCollection(".")
+
+// Get top 10 biggest files
+sel = Selector(top(10, Biggest))
+topBiggest = fc.apply(sel)
+message("Top 10 biggest files:")
+topBiggest.list()
+
+// Get top 20 oldest files
+sel = Selector(top(20, Oldest))
+topOldest = fc.apply(sel)
+message("Top 20 oldest files:")
+topOldest.list()
+```
+
+### Testing
+Run the test suite to verify the implementation:
+```bash
+python -m unittest test_cases.py
+```
+
+## Files
+- `fspow.g4`: ANTLR grammar file.
+- `fspowLexer.py`, `fspowParser.py`: Generated lexer and parser.
+- `main.py`: Interpreter for FSPOW scripts.
+- `FileCollection.py`: File collection management.
+- `FSObject.py`: File system object representation.
+- `Selector.py`: Filtering logic.
+- `test_cases.py`: Unit tests for the implementation.
+- `example.fspow`: Example FSPOW script.
+
+## Notes
+This implementation satisfies the requirements for Question 3 of the coursework, providing a functional interpreter for the FSPOW language with support for advanced filtering and logical operations.
