@@ -54,6 +54,10 @@ class FspowVisitor:
             elif first_child == 'not':
                 inner = self.visit(tree.getChild(2), parser)
                 return Selector.not_(inner)
+            elif first_child == 'top':
+                number = int(tree.getChild(2).getText())
+                top_attr = tree.getChild(4).getText()
+                return Selector.top(number, top_attr)
             elif first_child == '(':
                 return self.visit(tree.getChild(1), parser)
             else:  # Must be an intersect operation

@@ -35,7 +35,6 @@ topAttr: 'Biggest'                                    // ? AttrBiggest
         | 'Newest'                                    // ? AttrNewest
         ;
 
-// ? fcApplySelector: ID '.apply' '(' ID ')';
 fcApplySelector: ID '=' ID '.' 'apply' '(' ID ')' ;
 
 fcList: ID '.list' '(' ')';

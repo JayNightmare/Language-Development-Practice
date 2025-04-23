@@ -1,26 +1,24 @@
-// Create a file collection from the current directory
-fc = FileCollection(".")
+// Test script for top filter
 
-// Get top 10 biggest files
-sel = Selector(top(10, Biggest))
-topBiggest = fc.apply(sel)
-message("Top 10 biggest files:")
+// Create a file collection
+fc = FileCollection("test_directory")
+
+// Select top 2 biggest files
+selBiggest = Selector(top(2, Biggest))
+topBiggest = fc.apply(selBiggest)
 topBiggest.list()
 
-// Get top 20 oldest files
-sel = Selector(top(20, Oldest))
-topOldest = fc.apply(sel)
-message("Top 20 oldest files:")
-topOldest.list()
-
-// Get top 5 smallest files
-sel = Selector(top(5, Smallest))
-topSmallest = fc.apply(sel)
-message("Top 5 smallest files:")
+// Select top 3 smallest files
+selSmallest = Selector(top(3, Smallest))
+topSmallest = fc.apply(selSmallest)
 topSmallest.list()
 
-// Get top 15 newest files
-sel = Selector(top(15, Newest))
-topNewest = fc.apply(sel)
-message("Top 15 newest files:")
+// Select top 1 newest file
+selNewest = Selector(top(1, Newest))
+topNewest = fc.apply(selNewest)
 topNewest.list()
+
+// Select top 2 oldest files
+selOldest = Selector(top(2, Oldest))
+topOldest = fc.apply(selOldest)
+topOldest.list();
